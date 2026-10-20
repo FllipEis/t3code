@@ -54,6 +54,7 @@ import {
 import { useState, type ReactNode } from "react";
 
 import { useArchivedThreadSnapshots } from "../../lib/archivedThreadsState";
+import { cn } from "../../lib/utils";
 import { buildThreadRouteParams } from "../../threadRoutes";
 import {
   useProjects,
@@ -105,7 +106,10 @@ function ThreadLineageRowList(props: {
       */}
       <ul
         aria-label="Related threads"
-        className={`m-0 -me-(--app-scrollbar-width) list-none scrollbar-gutter-stable overflow-y-auto overscroll-contain p-0 has-data-workflow-expanded:max-h-[min(28rem,55dvh)] ${props.hiddenCount > 0 ? "max-h-[12rem]" : "max-h-[14rem]"}`}
+        className={cn(
+          "m-0 -me-(--app-scrollbar-width) list-none scrollbar-gutter-stable overflow-y-auto overscroll-contain p-0 has-data-workflow-expanded:max-h-[min(28rem,55dvh)]",
+          props.hiddenCount > 0 ? "max-h-[12rem]" : "max-h-[14rem]",
+        )}
       >
         {props.children}
       </ul>
