@@ -54,7 +54,6 @@ import {
 import { useState, type ReactNode } from "react";
 
 import { useArchivedThreadSnapshots } from "../../lib/archivedThreadsState";
-import { cn } from "../../lib/utils";
 import { buildThreadRouteParams } from "../../threadRoutes";
 import {
   useProjects,
@@ -99,17 +98,12 @@ function ThreadLineageRowList(props: {
       {/*
         Plain overflow, not a ScrollArea
         component: this sits inside an already scrolling panel, where a
-        max-height-only virtual viewport measures badly. "Show more" must not
-        shift the panel: the list plus that button always caps at the initial
-        rows plus the button, and the always-reserved gutter hangs into the
-        section padding.
+        max-height-only virtual viewport measures badly. The stable gutter keeps
+        rows from narrowing when "Show more" first makes the list scroll.
       */}
       <ul
         aria-label="Related threads"
-        className={cn(
-          "m-0 -me-(--app-scrollbar-width) list-none scrollbar-gutter-stable overflow-y-auto overscroll-contain p-0 has-data-workflow-expanded:max-h-[min(28rem,55dvh)]",
-          props.hiddenCount > 0 ? "max-h-[12rem]" : "max-h-[14rem]",
-        )}
+        className="m-0 max-h-[13.5rem] list-none scrollbar-gutter-stable overflow-y-auto overscroll-contain p-0 has-data-workflow-expanded:max-h-[min(28rem,55dvh)]"
       >
         {props.children}
       </ul>
